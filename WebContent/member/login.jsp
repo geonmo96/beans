@@ -27,7 +27,6 @@
 <body>
 	<div class="wrap">
 		<jsp:include page="/default/header.jsp"></jsp:include>
-
 		<div class="main">
 			<div class="left">
 				<h1>로그인 페이지입니다.</h1>
@@ -43,7 +42,7 @@
 							<td><input type="password" name="pw" placeholder="비밀번호"></td>
 						</tr>
 						<tr>
-							<td><a href="#">회원가입</a></td>
+							<td><a href="memberSign.jsp">회원가입</a></td>
 						</tr>
 					</table>
 				</form>		

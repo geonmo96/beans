@@ -106,6 +106,74 @@ public class MemberDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		try {
+			con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return member;
+	}
+	public boolean insertMember(MemberDTO member) {
+		try {
+			con = DriverManager.getConnection(url, id, pw);
+			String sql = "insert into members values(?,?,?,?,?)";
+			ps = con.prepareStatement(sql);
+			ps.setString(1, member.getId());
+			ps.setString(2, member.getPw());
+			ps.setString(3, member.getName());
+			ps.setString(4, member.getAddr());
+			ps.setString(5, member.getTel());
+			ps.executeUpdate();
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		try {
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	public boolean updateMember(MemberDTO member) {
+		try {
+			con = DriverManager.getConnection(url, id, pw);
+			String sql = "update members set name=?, addr=?, tel=? where id=?";
+			ps = con.prepareStatement(sql);
+			ps.setString(1, member.getName());
+			ps.setString(2, member.getAddr());
+			ps.setString(3, member.getTel());
+			ps.setString(4, member.getId());
+			ps.executeUpdate();
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		try {
+			con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	public boolean delete(String inputId) {
+		try {
+			con = DriverManager.getConnection(url, id, pw);
+			String sql = "delete from members where id = ?";
+			ps = con.prepareStatement(sql);
+			ps.setString(1, inputId);
+			ps.executeUpdate();
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		try {
+			con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 }
